@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsteroidGame
@@ -23,6 +20,9 @@ namespace AsteroidGame
             game_form.Height = 600;
 
             game_form.Show();
+
+            Game.Initialize(game_form);
+            Game.Draw();
 
             Application.Run(game_form);
         }
