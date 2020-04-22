@@ -21,6 +21,16 @@ namespace AsteroidGame
             __Context = BufferedGraphicsManager.Current;
             Graphics g = form.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
+
+            Timer timer = new Timer { Interval = 100 };
+            timer.Tick += OnVimerTick;
+            timer.Start();
+        }
+
+        private static void OnVimerTick(object sender, EventArgs e)
+        {
+            Update();
+            Draw();
         }
 
         public static void Draw()
