@@ -33,7 +33,7 @@ namespace AsteroidGame
                 _Direction.Y *= -1;
 
             if (_Position.X > Game.Width || _Position.Y > Game.Height)
-                _Direction.X *= -1;
+                _Direction.X *= -1; 
         }
     }
 }
