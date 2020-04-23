@@ -39,8 +39,7 @@ namespace AsteroidGame
         {
             Graphics g = __Buffer.Graphics;
 
-            var image = Properties.Resources.sky;
-            g.DrawImage(image, 0, 0);
+            g.DrawImage(Properties.Resources.sky, 0, 0);
 
             foreach (var game_object in __GameObjects)
                 game_object.Draw(g);

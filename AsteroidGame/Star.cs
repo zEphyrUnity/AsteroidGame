@@ -13,13 +13,7 @@ namespace AsteroidGame
 
         public override void Draw(Graphics g)
         {
-            g.DrawLine(Pens.PaleVioletRed, 
-                _Position.X, _Position.Y, 
-                _Position.X + _Size.Width, _Position.Y + _Size.Height);
-
-            g.DrawLine(Pens.MediumVioletRed,
-                _Position.X + _Size.Width, _Position.Y,
-                _Position.X, _Position.Y + _Size.Height);
+            g.DrawImage(Properties.Resources.star2, _Position.X, _Position.Y, _Size.Width, _Size.Height);
         }
 
         public override void Update()

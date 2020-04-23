@@ -75,7 +75,10 @@
     <None Include="Resources\sky.jpeg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Star.png" />
+    <None Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
