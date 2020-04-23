@@ -19,7 +19,7 @@ namespace AsteroidGame
 
         public virtual void Draw(Graphics g)
         {           
-            g.DrawEllipse(Pens.RoyalBlue, _Position.X, _Position.Y, _Size.Width, _Size.Height);
+            g.DrawImage(Properties.Resources.Star, _Position.X, _Position.Y, _Size.Width, _Size.Height);
         }
 
         public virtual void Update()
