@@ -26,6 +26,8 @@ namespace AsteroidGame
             Game.Draw();
 
             Application.Run(game_form);
+
+            //form.BackgroundImage = Properties.Resources.IMG_2496;
         }
     }
 }

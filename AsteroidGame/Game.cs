@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Reflection;
 using System.Drawing;
 
 namespace AsteroidGame
@@ -15,6 +16,8 @@ namespace AsteroidGame
 
         public static void Initialize(Form form)
         {
+            Form f = form;
+
             Width = form.Width;
             Height = form.Height;
 
@@ -37,7 +40,8 @@ namespace AsteroidGame
         {
             Graphics g = __Buffer.Graphics;
 
-            g.Clear(Color.Black);
+            var image = Properties.Resources.sky;
+            g.DrawImage(image, 0, 0);
 
             foreach (var game_object in __GameObjects)
                 game_object.Draw(g);
