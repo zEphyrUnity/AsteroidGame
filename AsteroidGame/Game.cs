@@ -122,6 +122,7 @@ namespace AsteroidGame
             catch (ArgumentOutOfRangeException exception)
             {
                 MessageBox.Show(exception.Message);
+                f.Close();
             }
 
             foreach (var game_object in __GameObjects)
