@@ -5,6 +5,7 @@ namespace AsteroidGame
 {
     static class Program
     {
+        
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -18,7 +19,7 @@ namespace AsteroidGame
 
             game_form.Width = 800;
             game_form.Height = 600;
-
+         
             game_form.Show();
 
             Game.Initialize(game_form);

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace AsteroidGame
 {
-    class VisualObject
+    class VisualObject : BaseObject
     {
         protected Point _Position;
         protected Point _Direction;
@@ -21,7 +21,7 @@ namespace AsteroidGame
             g.DrawImage(Properties.Resources.star, _Position.X, _Position.Y, _Size.Width, _Size.Height);
         }
 
-        public virtual void Update()
+        public override void Update()
         {
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
