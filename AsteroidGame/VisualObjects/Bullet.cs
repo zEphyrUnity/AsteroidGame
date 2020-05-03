@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AsteroidGame.VisualObjects
 {
-    internal class Bullet : VisualObject
+    internal class Bullet : CollisionObject
     {
         private const int __BulletSizeX = 20;
         private const int __BulletSizeY = 12;

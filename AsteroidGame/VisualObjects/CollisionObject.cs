@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AsteroidGame.VisualObjects
 {
@@ -14,7 +10,7 @@ namespace AsteroidGame.VisualObjects
 
         public Rectangle Rect
         {
-            get => new Rectangle(_Direction, _Size);
+            get => new Rectangle(_Position, _Size);
         }
 
         public bool CheckCollision(ICollision obj) => Rect.IntersectsWith(obj.Rect);
