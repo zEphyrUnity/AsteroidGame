@@ -1,7 +1,8 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using AsteroidGame.VisualObjects;
 
 namespace AsteroidGame
 {
@@ -9,11 +10,17 @@ namespace AsteroidGame
     {
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
-        public  static Form f;
-        public  static int Width;
-        
+        private static VisualObject[] __GameObjects;
+        private static Bullet __Bullet;
+        private static SpaceShip __SpaceShip;
+
+        public static Form f;
+
         const int maxWindowSize = 1000;
         const int minWindowSize = 0;
+
+        public static int Width;
+        public static int Height;
 
         public static int WindowWidth
         {
@@ -28,10 +35,8 @@ namespace AsteroidGame
                 {
                     Width = value;
                 }
-
             }
         }
-        public static int Height;
 
         public static int WindowHeight
         {
@@ -40,7 +45,7 @@ namespace AsteroidGame
             {
                 if (value > maxWindowSize || value < minWindowSize)
                 {
-                    throw new ArgumentOutOfRangeException("Ошибка размера по ширине");
+                    throw new ArgumentOutOfRangeException("Ошибка размера по высоте");
                 }
                 else
                 {
@@ -48,8 +53,6 @@ namespace AsteroidGame
                 }
             }
         }
-
-        private static VisualObject[] __GameObjects;
 
         public static void Initialize(Form form)
         {
@@ -89,27 +92,41 @@ namespace AsteroidGame
             foreach (var game_object in __GameObjects)
                 game_object.Draw(g);
 
+            __Bullet.Draw(g); 
             __Buffer.Render();
         }
 
         public static void Load()
         {
-            __GameObjects = new VisualObject[30];
+            List<VisualObject> game_objects = new List<VisualObject>();
 
-            for(var i = 0; i < __GameObjects.Length / 2; i++)
-            {
-                __GameObjects[i] = new VisualObject(
-                    new Point(600, i * 1),
-                    new Point(15 - i, 20 - i),
-                    new Size(20, 20));
-            }
+            //for(var i = 0; i < 30; i++)
+            //{
+            //    game_objects.Add(new VisualObject(
+            //        new Point(600, i * 1),
+            //        new Point(15 - i, 20 - i),
+            //        new Size(20, 20)));
+            //}
 
-            for (var i = __GameObjects.Length / 2; i < __GameObjects.Length; i++)
+            for (var i = 0; i < 10; i++)
             {
-                __GameObjects[i] = new Star(
+                game_objects.Add(new Star(
                     new Point(600, (int)(i / 2.0 *20)),
-                    new Point( -i, 0), 20);
+                    new Point( -i, 0), 20));
             }
+
+            var rnd = new Random();
+            const int asteroid_count = 10;
+            const int asteroid_size = 25;
+            const int asteroid_max_speed = 20;
+            for (var i = 0; i < asteroid_count; i++)
+                game_objects.Add(new Asteroid
+                    (new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                     new Point(rnd.Next(0, asteroid_max_speed), 0),
+                     asteroid_size));
+
+            __Bullet = new Bullet(200);
+            __GameObjects = game_objects.ToArray();
         }
 
         public static void Update()
@@ -127,6 +144,8 @@ namespace AsteroidGame
 
             foreach (var game_object in __GameObjects)
                 game_object.Update();
+
+            __Bullet.Update();
         }
     }
 }

@@ -1,27 +1,24 @@
 ﻿using System;
 using System.Drawing;
 
-namespace AsteroidGame
+namespace AsteroidGame.VisualObjects
 {
-    class VisualObject : BaseObject
+    internal abstract class VisualObject
     {
         protected Point _Position;
         protected Point _Direction;
         protected Size _Size;
 
-        public VisualObject(Point Position, Point Direction, Size Size)
+        protected VisualObject(Point Position, Point Direction, Size Size)
         {
             _Position = Position;
             _Direction = Direction;
             _Size = Size;
         }
 
-        public virtual void Draw(Graphics g)
-        {           
-            g.DrawImage(Properties.Resources.star, _Position.X, _Position.Y, _Size.Width, _Size.Height);
-        }
+        public abstract void Draw(Graphics g);
 
-        public override void Update()
+        public virtual void Update()
         {
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;

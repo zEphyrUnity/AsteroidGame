@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AsteroidGame
 {
-    abstract class BaseObject
-    {
-        public abstract void Update();
-    }
+    //abstract class BaseObject
+    //{
+    //    public abstract void Update();
+    //}
 }

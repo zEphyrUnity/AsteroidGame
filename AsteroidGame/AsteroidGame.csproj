@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VisualObjects\Asteroid.cs" />
     <Compile Include="BaseObject.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
@@ -55,8 +56,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Star.cs" />
-    <Compile Include="VisualObject.cs" />
+    <Compile Include="VisualObjects\Bullet.cs" />
+    <Compile Include="VisualObjects\ImageObject.cs" />
+    <Compile Include="VisualObjects\SpaceShip.cs" />
+    <Compile Include="VisualObjects\Star.cs" />
+    <Compile Include="VisualObjects\VisualObject.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -80,6 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\star2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asteroid2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asteroid3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

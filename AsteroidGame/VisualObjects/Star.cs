@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace AsteroidGame
+namespace AsteroidGame.VisualObjects
 {
     class Star : VisualObject
     {
