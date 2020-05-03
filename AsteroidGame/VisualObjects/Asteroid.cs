@@ -13,6 +13,5 @@ namespace AsteroidGame.VisualObjects
             : base(Position, Direction, new Size(ImageSize, ImageSize), Properties.Resources.asteroid3)
         {
         }
-
     }
 }

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace AsteroidGame.VisualObjects
 {
-    class Star : VisualObject
+    internal class Star : VisualObject
     {
         public Star(Point Position, Point Direction, int Size) 
             : base(Position, Direction, new Size(Size, Size))
