@@ -52,13 +52,13 @@ namespace AsteroidGame.VisualObjects
                 Destroyed?.Invoke(this, EventArgs.Empty);
         }
 
-        public void moveUp()
+        public void MoveUp()
         {
             if (_Position.Y > 0)
                 _Position.Y -= _Direction.Y;
         }
 
-        public void moveDown()
+        public void MoveDown()
         {
             if (_Position.Y - _Size.Height < Game.Height)
                 _Position.Y += _Direction.Y;
