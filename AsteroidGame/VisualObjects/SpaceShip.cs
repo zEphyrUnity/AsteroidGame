@@ -41,6 +41,12 @@ namespace AsteroidGame.VisualObjects
                 ChangeEnergy(-asteroid.Power);
             }
 
+            if (is_collision && obj is Medkit medkit)
+            {
+                ChangeEnergy(+medkit.Power);
+                System.Media.SystemSounds.Asterisk.Play();
+            }
+
             return is_collision;
         }
 

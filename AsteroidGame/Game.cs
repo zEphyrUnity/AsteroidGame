@@ -149,14 +149,6 @@ namespace AsteroidGame
         {
             List<VisualObject> game_objects = new List<VisualObject>();
 
-            //for(var i = 0; i < 30; i++)
-            //{
-            //    game_objects.Add(new VisualObject(
-            //        new Point(600, i * 1),
-            //        new Point(15 - i, 20 - i),
-            //        new Size(20, 20)));
-            //}
-
             for (var i = 0; i < 10; i++)
             {
                 game_objects.Add(new Star(
