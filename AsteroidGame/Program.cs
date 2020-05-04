@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using AsteroidGame.Logger;
 
 namespace AsteroidGame
 {
+    
+
     static class Program
     {
         private const int V = 800;

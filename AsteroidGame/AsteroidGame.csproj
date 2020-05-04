@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICollision.cs" />
+    <Compile Include="Logger\ConsoleLogger.cs" />
+    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Logger\TextFileLogger.cs" />
     <Compile Include="VisualObjects\Asteroid.cs" />
     <Compile Include="BaseObject.cs" />
     <Compile Include="Game.cs" />
@@ -93,5 +96,6 @@
   <ItemGroup>
     <None Include="Resources\asteroid3.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

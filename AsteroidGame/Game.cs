@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using AsteroidGame.VisualObjects;
+using AsteroidGame.Logger;
 
 namespace AsteroidGame
 {
+    delegate void GameLog(string Message);
+
     internal static class Game
     {
         private static BufferedGraphicsContext __Context;
@@ -58,6 +61,15 @@ namespace AsteroidGame
         public static void Initialize(Form form)
         {
             f = form;
+
+            ConsoleLogger Logger = new ConsoleLogger();
+            TextFileLogger TextLogger = new TextFileLogger("Logger.log");
+
+            GameLog GameLogger = Logger.Log;
+            GameLogger += TextLogger.Log;
+
+            GameLogger("Игра Запущена");
+            TextLogger.Flush();
 
             try
             {
