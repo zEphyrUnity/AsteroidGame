@@ -66,6 +66,8 @@ namespace AsteroidGame
             f = form;
 
             lbl.Text = "0";
+            lbl.BackColor = Color.Transparent;
+
             f.Controls.Add(lbl);
 
             ConsoleLogger Logger = new ConsoleLogger();
@@ -229,8 +231,7 @@ namespace AsteroidGame
                         if (__Bullet.CheckCollision(collision_object))
                         {
                             __Bullet = null;
-                            score++;
-                            lbl.Text = score.ToString();
+                            lbl.Text = score++.ToString();
 
                             if (__GameObjects[i] is Medkit) return;
 
