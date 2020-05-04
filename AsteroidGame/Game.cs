@@ -181,7 +181,7 @@ namespace AsteroidGame
             __SpaceShip.Destroyed += OnShipDestroyed;
         }
 
-        private static void OnShipDestroyed(object sener, EventArgs e)
+        private static void OnShipDestroyed(object sender, EventArgs e)
         {
             __Timer.Stop();
             var g = __Buffer.Graphics;
@@ -222,7 +222,10 @@ namespace AsteroidGame
                         if (__Bullet.CheckCollision(collision_object))
                         {
                             __Bullet = null;
+                            if (__GameObjects[i] is Medkit) return;
+
                             __GameObjects[i] = null;
+
                             System.Media.SystemSounds.Asterisk.Play();
                         }
                 }
