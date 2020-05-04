@@ -11,6 +11,9 @@ namespace AsteroidGame
 
     internal static class Game
     {
+        private static Label lbl = new Label();
+        private static int score;
+
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
         private static VisualObject[] __GameObjects;
@@ -61,6 +64,9 @@ namespace AsteroidGame
         public static void Initialize(Form form)
         {
             f = form;
+
+            lbl.Text = "0";
+            f.Controls.Add(lbl);
 
             ConsoleLogger Logger = new ConsoleLogger();
             TextFileLogger TextLogger = new TextFileLogger("Logger.log");
@@ -211,8 +217,9 @@ namespace AsteroidGame
             for(var i = 0; i < __GameObjects.Length; i++)
             {
                 var obj = __GameObjects[i];
+                var g = __Buffer.Graphics;
 
-                if(obj is ICollision)
+                if (obj is ICollision)
                 {
                     var collision_object = (ICollision)obj;
 
@@ -222,10 +229,15 @@ namespace AsteroidGame
                         if (__Bullet.CheckCollision(collision_object))
                         {
                             __Bullet = null;
+                            score++;
+                            lbl.Text = score.ToString();
+
                             if (__GameObjects[i] is Medkit) return;
 
-                            __GameObjects[i] = null;
+                            TextRenderer.DrawText(g, "Regular Text", f.Font,
+                            new Point(100, 100), SystemColors.Window);
 
+                            __GameObjects[i] = null;
                             System.Media.SystemSounds.Asterisk.Play();
                         }
                 }
