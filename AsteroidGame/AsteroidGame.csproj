@@ -63,6 +63,7 @@
     <Compile Include="VisualObjects\Bullet.cs" />
     <Compile Include="VisualObjects\CollisionObject.cs" />
     <Compile Include="VisualObjects\ImageObject.cs" />
+    <Compile Include="VisualObjects\Medkit.cs" />
     <Compile Include="VisualObjects\SpaceShip.cs" />
     <Compile Include="VisualObjects\Star.cs" />
     <Compile Include="VisualObjects\VisualObject.cs" />
@@ -91,11 +92,13 @@
     <None Include="Resources\star2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\asteroid2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\asteroid3.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\medkit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asteroid2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

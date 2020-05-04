@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿
+using System.Drawing;
 
 namespace AsteroidGame.VisualObjects
 {
@@ -14,7 +15,7 @@ namespace AsteroidGame.VisualObjects
 
         public override void Draw(Graphics g)
         {
-            g.DrawImage(Properties.Resources.asteroid3, _Position.X, _Position.Y, _Size.Width, _Size.Height);
+            g.DrawImage(_Image, _Position.X, _Position.Y, _Size.Width, _Size.Height);
         }
     }
 }

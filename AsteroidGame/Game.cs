@@ -174,6 +174,15 @@ namespace AsteroidGame
                      new Point(rnd.Next(0, asteroid_max_speed), 0),
                      asteroid_size));
 
+            const int medkit_count = 5;
+            const int medkit_size = 20;
+            const int medkit_max_speed = 10;
+            for (var i = 0; i < medkit_count; i++)
+                game_objects.Add(new Medkit
+                    (new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                     new Point(rnd.Next(0, medkit_max_speed), 0),
+                     medkit_size));
+
             __Bullet = new Bullet(200);
             __GameObjects = game_objects.ToArray();
             __SpaceShip = new SpaceShip(new Point(10, 400), new Point(5, 5), new Size(10, 10));
