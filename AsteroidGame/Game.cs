@@ -68,7 +68,7 @@ namespace AsteroidGame
             lbl.Text = "0";
             lbl.BackColor = Color.Transparent;
 
-            f.Controls.Add(lbl);
+            f.Controls.Add(lbl); 
 
             ConsoleLogger Logger = new ConsoleLogger();
             TextFileLogger TextLogger = new TextFileLogger("Logger.log");
