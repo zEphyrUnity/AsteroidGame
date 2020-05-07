@@ -46,17 +46,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICollision.cs" />
+    <Compile Include="Logger\ConsoleLogger.cs" />
+    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Logger\TextFileLogger.cs" />
+    <Compile Include="VisualObjects\Asteroid.cs" />
+    <Compile Include="BaseObject.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="VisualObjects\Bullet.cs" />
+    <Compile Include="VisualObjects\CollisionObject.cs" />
+    <Compile Include="VisualObjects\ImageObject.cs" />
+    <Compile Include="VisualObjects\Medkit.cs" />
+    <Compile Include="VisualObjects\SpaceShip.cs" />
+    <Compile Include="VisualObjects\Star.cs" />
+    <Compile Include="VisualObjects\VisualObject.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -66,6 +81,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sky.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asteroid3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\medkit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asteroid2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
