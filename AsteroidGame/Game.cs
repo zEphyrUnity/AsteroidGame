@@ -13,6 +13,7 @@ namespace AsteroidGame
     {
         private static Label lbl = new Label();
         private static int score;
+        private static int asteroid_count = 1;
 
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
@@ -22,7 +23,8 @@ namespace AsteroidGame
         private static SpaceShip __SpaceShip;
         private static Timer __Timer;
 
-        public static Form f;
+        public static Form MainForm;
+
 
         const int maxWindowSize = 1000;
         const int minWindowSize = 0;
@@ -64,12 +66,12 @@ namespace AsteroidGame
 
         public static void Initialize(Form form)
         {
-            f = form;
+            MainForm = form;
 
             lbl.Text = "0";
             lbl.BackColor = Color.Transparent;
 
-            f.Controls.Add(lbl); 
+            MainForm.Controls.Add(lbl); 
 
             ConsoleLogger Logger = new ConsoleLogger();
             TextFileLogger TextLogger = new TextFileLogger("Logger.log");
@@ -157,10 +159,26 @@ namespace AsteroidGame
             __Buffer.Render();
         }
 
+        internal static void AsteroidBuilder()
+        {
+            List<VisualObject> asteroid_objects = new List<VisualObject>();
+            Random rnd = new Random();
+            
+            const int asteroid_size = 25;
+            const int asteroid_max_speed = 20;
+
+            for (var i = 0; i < asteroid_count; i++)
+                asteroid_objects.Add(new Asteroid
+                    (new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
+                     new Point(rnd.Next(0, asteroid_max_speed), 0),
+                     asteroid_size));
+
+            __AsteroidObjects = asteroid_objects.ToArray();
+        }
+
         public static void Load()
         {
             List<VisualObject> game_objects = new List<VisualObject>();
-            List<VisualObject> asteroid_objects = new List<VisualObject>();
 
             for (var i = 0; i < 10; i++)
             {
@@ -170,15 +188,6 @@ namespace AsteroidGame
             }
 
             var rnd = new Random();
-            const int asteroid_count = 10;
-            const int asteroid_size = 25;
-            const int asteroid_max_speed = 20;
-            for (var i = 0; i < asteroid_count; i++)
-                asteroid_objects.Add(new Asteroid
-                    (new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
-                     new Point(rnd.Next(0, asteroid_max_speed), 0),
-                     asteroid_size));
-
             const int medkit_count = 5;
             const int medkit_size = 20;
             const int medkit_max_speed = 10;
@@ -188,8 +197,9 @@ namespace AsteroidGame
                      new Point(rnd.Next(0, medkit_max_speed), 0),
                      medkit_size));
 
+            AsteroidBuilder();
+
             __Bullet = new Bullet(200);
-            __AsteroidObjects = asteroid_objects.ToArray();
             __GameObjects = game_objects.ToArray();
             __SpaceShip = new SpaceShip(new Point(10, 400), new Point(5, 5), new Size(10, 10));
             __SpaceShip.Destroyed += OnShipDestroyed;
@@ -208,26 +218,38 @@ namespace AsteroidGame
         {
             try
             {
-                WindowWidth = f.Width;
-                WindowHeight = f.Height;
+                WindowWidth = MainForm.Width;
+                WindowHeight = MainForm.Height;
             }
             catch (ArgumentOutOfRangeException exception)
             {
                 MessageBox.Show(exception.Message);
-                f.Close();
+                MainForm.Close();
             }
 
             foreach (var game_object in __GameObjects)
                 game_object?.Update();
 
+            bool asteroidExists = false;
             foreach (var asteroid_object in __AsteroidObjects)
+            {
                 asteroid_object?.Update();
+
+                if (asteroid_object != null) 
+                    asteroidExists = true;
+            }
+
+            if(asteroidExists == false)
+            {
+                asteroid_count++;
+                AsteroidBuilder();
+            } 
 
             __Bullet?.Update();
 
-            for(var i = 0; i < __GameObjects.Length; i++)
+            for(var i = 0; i < __AsteroidObjects.Length; i++)
             {
-                var obj = __GameObjects[i];
+                var obj = __AsteroidObjects[i];
                 var g = __Buffer.Graphics;
 
                 if (obj is ICollision)
@@ -240,14 +262,9 @@ namespace AsteroidGame
                         if (__Bullet.CheckCollision(collision_object))
                         {
                             __Bullet = null;
-                            lbl.Text = score++.ToString();
+                            lbl.Text = asteroid_count.ToString();
 
-                            if (__GameObjects[i] is Medkit) return;
-
-                            TextRenderer.DrawText(g, "Regular Text", f.Font,
-                            new Point(100, 100), SystemColors.Window);
-
-                            __GameObjects[i] = null;
+                            __AsteroidObjects[i] = null;
                             System.Media.SystemSounds.Asterisk.Play();
                         }
                 }
