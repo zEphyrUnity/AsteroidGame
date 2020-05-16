@@ -17,6 +17,7 @@ namespace AsteroidGame
         private static BufferedGraphicsContext __Context;
         private static BufferedGraphics __Buffer;
         private static VisualObject[] __GameObjects;
+        private static VisualObject[] __AsteroidObjects;
         private static Bullet __Bullet;
         private static SpaceShip __SpaceShip;
         private static Timer __Timer;
@@ -146,6 +147,9 @@ namespace AsteroidGame
             foreach (var game_object in __GameObjects)
                 game_object?.Draw(g);
 
+            foreach (var asteriod_object in __AsteroidObjects)
+                asteriod_object?.Draw(g);
+
             __SpaceShip.Draw(g);
             __Bullet?.Draw(g);
 
@@ -156,6 +160,7 @@ namespace AsteroidGame
         public static void Load()
         {
             List<VisualObject> game_objects = new List<VisualObject>();
+            List<VisualObject> asteroid_objects = new List<VisualObject>();
 
             for (var i = 0; i < 10; i++)
             {
@@ -169,7 +174,7 @@ namespace AsteroidGame
             const int asteroid_size = 25;
             const int asteroid_max_speed = 20;
             for (var i = 0; i < asteroid_count; i++)
-                game_objects.Add(new Asteroid
+                asteroid_objects.Add(new Asteroid
                     (new Point(rnd.Next(0, Width), rnd.Next(0, Height)),
                      new Point(rnd.Next(0, asteroid_max_speed), 0),
                      asteroid_size));
@@ -184,6 +189,7 @@ namespace AsteroidGame
                      medkit_size));
 
             __Bullet = new Bullet(200);
+            __AsteroidObjects = asteroid_objects.ToArray();
             __GameObjects = game_objects.ToArray();
             __SpaceShip = new SpaceShip(new Point(10, 400), new Point(5, 5), new Size(10, 10));
             __SpaceShip.Destroyed += OnShipDestroyed;
@@ -213,6 +219,9 @@ namespace AsteroidGame
 
             foreach (var game_object in __GameObjects)
                 game_object?.Update();
+
+            foreach (var asteroid_object in __AsteroidObjects)
+                asteroid_object?.Update();
 
             __Bullet?.Update();
 
