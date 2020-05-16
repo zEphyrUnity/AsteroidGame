@@ -12,7 +12,7 @@ namespace AsteroidGame
     internal static class Game
     {
         private static Label lbl = new Label();
-        private static int score;
+        private static int score = 0;
         private static int asteroid_count = 1;
 
         private static BufferedGraphicsContext __Context;
@@ -262,7 +262,7 @@ namespace AsteroidGame
                         if (__Bullet.CheckCollision(collision_object))
                         {
                             __Bullet = null;
-                            lbl.Text = asteroid_count.ToString();
+                            lbl.Text = (++score).ToString();
 
                             __AsteroidObjects[i] = null;
                             System.Media.SystemSounds.Asterisk.Play();
